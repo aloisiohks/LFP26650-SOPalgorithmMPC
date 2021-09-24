@@ -6,7 +6,7 @@ This repository contains the MPC-based lithium-ion battery state of power estima
 
 - This software uses Model Predictive Control(MPC) to enforce constraints on current, voltage and temperature during charging. 
 - The underlying model of this MPC-based algorithm is a coupled electro-thermal (CET) model developed in thesis above. The details of the CET model is presented below. The CET model can be parameterized using the <a href="https://data.mendeley.com/datasets/p8kf893yv3/1">A123 26650 dataset</a> . For details about the model parameterization see the <a href="https://mountainscholar.org/handle/10976/167269">thesis</a>.<br/>
-- mainMPC.m is the main file to run the MPC algorithm
+- mainSOP.m is the main file to run the MPC algorithm
 
 
 
