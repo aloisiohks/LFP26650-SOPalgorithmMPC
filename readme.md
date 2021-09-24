@@ -1,4 +1,7 @@
-# A123_26650_StateOfPowerEstimation_MPC
+# State of Power Estimation using Model Predictive Control and a Coupled Electro-Thermal Model (A123 26650)
+
+
+If you use this software in your work please cite the thesis below or reference this repository using the following DOI <a href="https://zenodo.org/badge/latestdoi/398843010"><img src="https://zenodo.org/badge/398843010.svg" alt="DOI"></a>
 
 This repository contains the MPC-based lithium-ion battery state of power estimation algorithm for the A123 26650 m1b cell developed and used in the following publication
 
