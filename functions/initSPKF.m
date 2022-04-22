@@ -1,14 +1,17 @@
 function spkfData = initSPKF(SigmaX0,SigmaV,SigmaW,model,SOC0,Tc0,Ts0)
 % Initial state description
 
-ir0 = 0; spkfData.irInd = 1;
-hk0 = 0; spkfData.hkInd = 2;
- spkfData.zkInd = 3;
+ir0 = 0; 
+hk0 = 0; 
+spkfData.zkInd = 1;
+spkfData.irInd = 2;
+spkfData.hkInd = 3;
 spkfData.TcInd =4;
 spkfData.TsInd =5;
 
-
-spkfData.xhat = [ir0 hk0 SOC0 Tc0 Tc0]'; % initial state
+% Assuming that the initial temperature of the cell 
+% is in equilibrium Tc = Ts
+spkfData.xhat = [SOC0 ir0 hk0 Tc0 Ts0]'; % initial state
 % Covariance values
 spkfData.SigmaX = SigmaX0;
 spkfData.SigmaV = SigmaV;
@@ -32,4 +35,6 @@ spkfData.priorI = 0;
 spkfData.signIk = 0;
 % store model data structure too
 spkfData.model = model;
+spkfData.Bounds = diag(3*sqrt(SigmaX0));
+spkfData.vk = [];
 end

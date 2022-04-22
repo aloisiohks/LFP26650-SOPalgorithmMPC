@@ -50,10 +50,10 @@ if ((xk_1(1) > mpcData.const.z_min) && (xk_1(4) < (mpcData.const.tc_max )))
    [Phi,G,~]  = predMat(Az,Bz,Cz,Dz,Nc,Np);
       
    F = -G'*(Ref - Phi*X(:,kk-1) );
-   if mpcData.adap == 1
+   if mpcData.adap 
        [~,S,~] = svd(G'*G);
        [m,n] = size(S);
-       Ru = (norm(F,2)/(2*mpcData.const.du_max*sqrt(Nc)))-(S(m,n)); 
+       Ru = abs((norm(F,2)/(2*mpcData.const.du_max*sqrt(Nc)))-(S(m,n)));
    end
    E = (G'*G + Ru*eye(mpcData.Nc,mpcData.Nc)); 
    

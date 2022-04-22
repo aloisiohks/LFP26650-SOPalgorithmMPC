@@ -1,4 +1,4 @@
-function [spkfData,vk] = iterSPKF(vk,ik,Tk,Tfk,Tsk,deltat,spkfData)
+function [spkfData] = iterSPKF(vk,ik,Tk,Tfk,Tsk,deltat,spkfData)
 model = spkfData.model;
 % Load the cell model parameters
 Q = getParamESC('QParam',Tk,model);
@@ -17,7 +17,7 @@ if ik<0, ik=ik*eta; end;
 % Get data stored in spkfData structure
 I = spkfData.priorI;
 SigmaX = spkfData.SigmaX;
-xhat = spkfData.xhat;
+xhat = spkfData.xhat(:,end);
 Nx = spkfData.Nx;
 Nw = spkfData.Nw;
 Nv = spkfData.Nv;
@@ -96,19 +96,14 @@ end
 % Save data in spkfData structure for next time...
 spkfData.priorI = ik;
 spkfData.SigmaX = SigmaX;
-spkfData.xhat = xhat;
+spkfData.xhat = [spkfData.xhat xhat];
 
-spkfData.zkBounds = 3*sqrt(SigmaX(zkInd,zkInd));
-spkfData.hkBounds = 3*sqrt(SigmaX(hkInd,hkInd));
-spkfData.irckBounds = 3*sqrt(SigmaX(irInd,irInd));
-spkfData.TckBounds = 3*sqrt(SigmaX(TcInd,TcInd));
-spkfData.TskBounds = 3*sqrt(SigmaX(TsInd,TsInd));
+spkfData.Bounds = [spkfData.Bounds diag(3*sqrt(SigmaX))];
 
 
+spkfData.vk = [spkfData.vk yhat(1)];
 
-vk = yhat(1);
-Tck = xhat(4);
-Tsk = xhat(5);
+
 
 
 % Calculate new states for all of the old state vectors in xold.

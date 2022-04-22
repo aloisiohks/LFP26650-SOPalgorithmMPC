@@ -1,4 +1,4 @@
-function plotFormat(addedSpace)
+function thesisFormat(addedSpace)
 % THESISFORMAT Set up current figure with format for main text
 % with two figures side-by-side for UCCS thesis
 %
