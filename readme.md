@@ -5,6 +5,8 @@ If you use this software in your work please cite the thesis below or reference 
 
 This repository contains the MPC-based lithium-ion battery state of power estimation algorithm for the A123 26650 m1b cell developed and used in the following publication
 
+Kawakita de Souza, A., Plett, G.L., Trimboli, M.S.,, “A Model Predictive Control-Based State of Power Estimation Algorithm Using Adaptive Weighting,” in Proc. 35nd Electric Vehicle Symposium (EVS35), Oslo, Norway, (June 2022).
+
 <a href="https://mountainscholar.org/handle/10976/167269">Kawakita de Souza, A. (2020). Advanced Predictive Control Strategies for Lithium-Ion Battery Management Using a Coupled Electro-Thermal Model [Master thesis, University of Colorado, Colorado Springs]. ProQuest Dissertations Publishing.</a>
 
 - This software uses Model Predictive Control(MPC) to computed the maximum discharge/charge power limit while enforcing constraints on current, voltage and temperature. 
