@@ -19,7 +19,7 @@
 
 clear all;close all;clc;
 
-addpath('./');
+addpath(genpath('./'));
 
 
 
@@ -46,26 +46,25 @@ Tc0 = 30;      % Tc initial guess
 Ts0 = 30;      % Ts initial guess
 % Covariance values
 SigmaX0 = diag([.5e-2 1e-5 1e-4 1e-1 1e-1]); % uncertainty of initial state
-SigmaV = diag([1e-1 2e-5]); % Uncertainty of voltage sensor, output equation
-SigmaW = diag([1e-5 1e-4 1e-4 1e-2 1e-3]); % Uncertainty of current sensor, state equation
+SigmaV = diag([1e-1 2e-5]);                  % Uncertainty of voltage sensor, output equation
+SigmaW = diag([1e-5 1e-4 1e-4 1e-2 1e-3]);   % Uncertainty of current sensor, state equation
 spkfData = initSPKF(SigmaX0,SigmaV,SigmaW,model,SOC0,Tc0,Ts0);
 
 %% SOP limits
 mpcData.const.z_max = 0.9;     % Max SOC
 mpcData.const.z_min = 0.1;     % Min SOC
-mpcData.const.du_max =  100;    % Max control increment (Used by adaptive input weighting)
-mpcData.const.u_max = 50;     % Max discharging current
+mpcData.const.u_max = 50;      % Max discharging current
 mpcData.const.u_min =  -25;    % Max charging current 
 mpcData.const.v_min = 2.4;     % Min voltage
 mpcData.const.v_max = 3.7;     % Max voltage
-mpcData.const.tc_max = 50;   % Max temperature
+mpcData.const.tc_max = 50;     % Max temperature
 mpcData.Tfk = Tf;
 
 %% MPC Configuration
-mpcData.adap = 1; % 1 - Adaptive input weighting, 0 - Standard input weighting Ru
+mpcData.adap = 1;   % 1 - Adaptive input weighting, 0 - Standard input weighting Ru
 mpcData.Ru = 1e-5;  % Input weighting (only used if adapFlag=0)
-mpcData.Np = 3;    % MPC prediction horizon
-mpcData.Nc = 2;   % MPC control horizon
+mpcData.Np = 3;     % MPC prediction horizon
+mpcData.Nc = 2;     % MPC control horizon
 mpcData.Sigma = tril(ones(mpcData.Nc,mpcData.Nc));
 mpcData.deltaT = deltaT;
 mpcData.model = model;
