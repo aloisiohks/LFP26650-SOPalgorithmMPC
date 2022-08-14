@@ -20,6 +20,7 @@ function [Y,X,U,DelU,Pavg,Pinst,mpcData] = iterMPC_dis(xk_1,mpcData,Nsim,deltaT)
     Ref = mpcData.const.z_min*ones(Np,1);
     uk = mpcData.const.u_max;
     mpcData.uk_1 = uk;
+    du_max = mpcData.const.u_max;
 
         
 
@@ -53,7 +54,7 @@ if ((xk_1(1) > mpcData.const.z_min) && (xk_1(4) < (mpcData.const.tc_max )))
    if mpcData.adap 
        [~,S,~] = svd(G'*G);
        [m,n] = size(S);
-       Ru = abs((norm(F,2)/(2*mpcData.const.du_max*sqrt(Nc)))-(S(m,n)));
+       Ru = abs((norm(F,2)/(2*du_max*sqrt(Nc)))-(S(m,n)));
    end
    E = (G'*G + Ru*eye(mpcData.Nc,mpcData.Nc)); 
    
