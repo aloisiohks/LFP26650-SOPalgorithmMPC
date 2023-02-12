@@ -1,7 +1,8 @@
+% This function builds the matrices M and gamma to solve the MPC
+% optimization problem. 
+
 function [ M, gamma ] = constraints( dx, linMatrices, mpcData,uk,rflag)
-%CONSTRAINTS Summary of this function goes here
-%   Detailed explanation goes here
-% Cell current: icell = ig + Istr
+
 % tic
     Np = mpcData.Np;
     Nc = mpcData.Nc;
